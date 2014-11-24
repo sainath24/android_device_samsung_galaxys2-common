@@ -79,6 +79,9 @@ COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH -DWORKAROUND_BUG_10194508
 BOARD_USES_FIMGAPI := true
 BOARD_USES_SKIA_FIMGAPI := true
 
+# Logging
+TARGET_USES_LOGD := false
+
 # Enable WEBGL in WebKit
 ENABLE_WEBGL := true
 
@@ -172,7 +175,7 @@ BOARD_BATTERY_DEVICE_NAME := "battery"
 BOARD_CHARGER_RES := device/samsung/galaxys2-common/res/charger
 
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxys2-common/shbootimg.mk
-
+BOARD_USES_LEGACY_MMAP := true
 # Override healthd HAL
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.exynos4
 
