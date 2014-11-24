@@ -54,7 +54,7 @@ BOARD_NAND_PAGE_SIZE := 4096
 BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_BASE := 0x40000000
-BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0
+BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0 androidboot.selinux=permissive
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -141,18 +141,18 @@ BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/s3c-usbgadget/gadget/lun%d/file"
 
 # Selinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/galaxys2-common/selinux
+# BOARD_SEPOLICY_DIRS += \
+#    device/samsung/galaxys2-common/selinux
 
-BOARD_SEPOLICY_UNION += \
-    device.te \
-    drmserver.te \
-    ueventd.te \
-    domain.te \
-    file.te \
-    file_contexts \
-    rild.te \
-    vold.te
+#BOARD_SEPOLICY_UNION += \
+#    device.te \
+#    drmserver.te \
+#    ueventd.te \
+#    domain.te    
+#    file.te \
+#    file_contexts \
+#    rild.te \
+#    vold.te
 
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys2-common/recovery/recovery_keys.c
