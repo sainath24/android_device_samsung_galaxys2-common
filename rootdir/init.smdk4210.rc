@@ -2,14 +2,15 @@ import init.smdk4210.usb.rc
 import init.gps.rc
 
 on init
-    export EXTERNAL_STORAGE /storage/sdcard0
+    #export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
 
-    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
+	mkdir /mnt/shell/emulated 0700 shell shell
+	mkdir /storage/emulated 0555 root root
     mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
     mkdir /mnt/media_rw/usbdisk0 0700 media_rw media_rw
+    mkdir /mnt/media_rw/sd0 0700 media_rw media_rw
 
-    mkdir /storage/sdcard0 0770 root root
     mkdir /storage/sdcard1 0770 root root
     mkdir /storage/usbdisk0 0770 root root
 
@@ -19,15 +20,28 @@ on init
     mkdir /mnt/.lfs 0755 root root
 
     # for backwards compatibility
-    symlink /storage/sdcard0 /sdcard
-    symlink /storage/sdcard0 /mnt/sdcard
+	symlink /storage/emulated/legacy /sdcard
+	symlink /storage/emulated/legacy /mnt/sdcard
+	symlink /storage/emulated/legacy /storage/sdcard0
+	symlink /mnt/shell/emulated/0 /storage/emulated/legacy
     symlink /storage/sdcard1 /extSdCard
     symlink /storage/sdcard1 /mnt/extSdCard
     symlink /storage/usbdisk0 /usbdisk0
     symlink /storage/usbdisk0 /mnt/usbdisk0
-
+	export EXTERNAL_STORAGE /storage/emulated/legacy
+	export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+	export EMULATED_STORAGE_TARGET /storage/emulated
 # Disable CFQ slice idle delay
     write /sys/block/mmcblk0/queue/iosched/slice_idle 0
+
+on boot
+	mkdir /data/media 0775 media_rw media_rw
+	chown media_rw media_rw /data/media
+	setprop ro.crypto.fuse_sdcard true
+
+
+
+
 
 on fs
     mount_all /fstab.smdk4210
@@ -333,6 +347,10 @@ on boot
     setprop status.battery.level_raw  50
     setprop status.battery.level_scale 9
 
+
+service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /mnt/media_rw/sd0 /mnt/shell/emulated
+	class late_start
+
 # For RIL
 service cpboot-daemon /sbin/cbd -d -p 8
     class main
@@ -428,10 +446,6 @@ service bugreport /system/bin/dumpstate -d -p -B \
     disabled
     oneshot
     keycodes 114 115 116
-
-service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
-    class late_start
-    disabled
 
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
