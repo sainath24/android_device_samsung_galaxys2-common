@@ -169,6 +169,7 @@ BOARD_RECOVERY_SWIPE := true
 TARGET_RECOVERY_FSTAB := device/samsung/galaxys2-common/rootdir/fstab.smdk4210
 RECOVERY_FSTAB_VERSION := 2
 
+BOARD_RIL_CLASS := ../../../hardware/samsung/ril
 # Device specific headers
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2-common/include
 
