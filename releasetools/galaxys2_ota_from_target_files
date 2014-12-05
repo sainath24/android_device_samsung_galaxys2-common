@@ -20,6 +20,8 @@ import galaxys2_common as common
 
 LOCAL_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 RELEASETOOLS_DIR = os.path.abspath(os.path.join(LOCAL_DIR, '../../../build/tools/releasetools'))
+TARGET_DIR = os.getenv('OUT')
+
 # Add releasetools directory to python path
 sys.path.append(RELEASETOOLS_DIR)
 
@@ -34,10 +36,7 @@ import galaxys2_edify_generator as edify_generator
 __doc__ = ota_from_target_files.__doc__
 
 def CopyBootFiles(input_zip, output_zip):
-  boot_img = common.GetBootableImage("boot.img", "boot.img",
-                                     OPTIONS.input_tmp, "BOOT")
-  common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
-  common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
+    output_zip.write(os.path.join(TARGET_DIR, "boot.img"),"boot.img")
 
 def WriteFullOTAPackage(input_zip, output_zip):
   # TODO: how to determine this?  We don't know what version it will
@@ -61,6 +60,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
       input_tmp=OPTIONS.input_tmp,
       metadata=metadata,
       info_dict=OPTIONS.info_dict)
+
   system_items = ItemSet("system", "META/filesystem_config.txt")
   AppendAssertions(script, device_specific.info_dict)
   device_specific.FullOTA_Assertions()
@@ -73,8 +73,8 @@ def WriteFullOTAPackage(input_zip, output_zip):
 
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
-
-  script.Unmount("/system")
+    script.Unmount("/system")
+   
   script.FormatPartition("/system")
   script.Mount("/system")
   script.UnpackPackageDir("recovery", "/system")
