@@ -35,7 +35,7 @@ EXTENDED_FONT_FOOTPRINT := true
 
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
-
+EXYNOS4_ENHANCEMENTS := true
 ifdef EXYNOS4210_ENHANCEMENTS
 COMMON_GLOBAL_CFLAGS += -DEXYNOS4_ENHANCEMENTS
 COMMON_GLOBAL_CFLAGS += -DEXYNOS4210_ENHANCEMENTS
@@ -60,6 +60,14 @@ BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0 androidboot.selinux=permissive
+
+# Enable dex-preoptimization to speed up first boot sequence
+ifeq ($(HOST_OS),linux)
+	ifeq ($(TARGET_BUILD_VARIANT),userdebug)
+		WITH_DEXPREOPT := true
+	endif
+endif
+DONT_DEXPREOPT_PREBUILTS := true
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -101,7 +109,8 @@ BOARD_NONBLOCK_MODE_PROCESS := true
 BOARD_USE_STOREMETADATA := true
 BOARD_USE_METADATABUFFERTYPE := true
 BOARD_USES_MFC_FPS := true
-
+BOARD_USE_S3D_SUPPORT := true
+BOARD_USE_CSC_FIMC := false
 # Audio
 BOARD_USE_TINYALSA_AUDIO := true
 BOARD_USE_YAMAHA_MC1N2_AUDIO := true
