@@ -165,10 +165,10 @@
 	<bool name="config_enableMultiUserUI">true</bool>
 
     <!-- Workaround for devices with broken keyboards -->
-<!--    <bool name="config_forceDisableHardwareKeyboard">true</bool> -->
+    <bool name="config_forceDisableHardwareKeyboard">true</bool>
 
     <!-- Boolean to enable stk functionality on Samsung phones -->
-<!--    <bool name="config_samsung_stk">true</bool> -->
+    <bool name="config_samsung_stk">true</bool>
 
     <!-- Device supports LED flashlight -->
   <!--  <bool name="config_enableTorch">true</bool> -->
