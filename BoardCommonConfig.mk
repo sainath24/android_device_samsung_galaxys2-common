@@ -90,6 +90,7 @@ BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH -DWORKAROUND_BUG_10194508
 BOARD_EGL_NEEDS_LEGACY_FB := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
 
 # FIMG Acceleration
 BOARD_USES_FIMGAPI := true
@@ -167,7 +168,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/s3c-usbgadget/gadget/l
 #    device.te \
 #    drmserver.te \
 #    ueventd.te \
-#    domain.te    
+#    domain.te \   
 #    file.te \
 #    file_contexts \
 #    rild.te \
