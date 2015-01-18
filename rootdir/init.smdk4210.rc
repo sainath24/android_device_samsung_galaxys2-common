@@ -389,9 +389,6 @@ service charger /sbin/healthd -c
 	critical
 	seclabel u:r:healthd:s0
 
-service daemonsu_daemon /system/xbin/daemonsu --auto-daemon
-    oneshot
-
 service wpa_supplicant /system/bin/wpa_supplicant \
 	-Dnl80211 -iwlan0 -e/data/misc/wifi/entropy.bin \
 	-c/data/misc/wifi/wpa_supplicant.conf \
@@ -463,3 +460,8 @@ service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1
 service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk0 /storage/usbdisk0
     class late_start
     disabled
+
+# LMK
+on property:init.svc.bootanim=stopped
+	write /sys/module/lowmemorykiller/parameters/minfree 12288,15360,18432,21504,24576,30720
+
