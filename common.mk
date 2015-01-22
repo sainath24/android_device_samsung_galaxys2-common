@@ -81,6 +81,10 @@ PRODUCT_PACKAGES += \
     libfimg \
     libsecion
 
+# Camera
+PRODUCT_PACKAGES += \
+	CameraNext
+
 # Charger
 PRODUCT_PACKAGES += \
     charger \
