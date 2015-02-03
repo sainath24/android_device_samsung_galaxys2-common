@@ -64,12 +64,12 @@ BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0 androidboot.selinux=permissive
 
 # Enable dex-preoptimization to speed up first boot sequence
-ifeq ($(HOST_OS),linux)
-	ifeq ($(TARGET_BUILD_VARIANT),userdebug)
-		WITH_DEXPREOPT := true
-	endif
-endif
-DONT_DEXPREOPT_PREBUILTS := true
+# ifeq ($(HOST_OS),linux)
+# 	ifeq ($(TARGET_BUILD_VARIANT),userdebug)
+# 		WITH_DEXPREOPT := true
+# 	endif
+# endif
+# DONT_DEXPREOPT_PREBUILTS := true
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
