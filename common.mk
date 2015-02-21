@@ -32,6 +32,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/98netflix:system/etc/init.d/98netflix
 
+# Check if user want to trim free space
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/configs/95runtrim:system/etc/init.d/95runtrim
+
 # Audio
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/tinyalsa-audio.xml:system/etc/tinyalsa-audio.xml \
