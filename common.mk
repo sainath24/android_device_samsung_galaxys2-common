@@ -61,6 +61,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
     SamsungServiceMode \
+    macloader \
     Torch
 
 # Audio Packages
@@ -141,6 +142,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.call_ring.multiple=false \
     ro.telephony.call_ring.delay=1000
 
+# Camera
+# PRODUCT_PROPERTY_OVERRIDES += \
+#	camera2.portability.force_api=1
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     static_busybox \
@@ -164,8 +169,7 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     hostapd \
     dhcpcd.conf \
-    wpa_supplicant \
-    wpa_supplicant.conf
+    wpa_supplicant
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
