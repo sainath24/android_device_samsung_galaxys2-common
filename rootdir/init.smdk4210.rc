@@ -382,6 +382,11 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
+service charger /sbin/healthd -c
+	class charger
+	critical
+	seclabel u:r:healthd:s0
+
 service wpa_supplicant /system/bin/wpa_supplicant \
     -Dnl80211 -iwlan0 -e/data/misc/wifi/entropy.bin \
     -c/data/misc/wifi/wpa_supplicant.conf \
