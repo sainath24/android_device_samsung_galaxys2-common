@@ -28,6 +28,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/init.recovery.smdk4210.rc:root/init.recovery.smdk4210.rc
 
+# enable ksm
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/configs/01ksm:system/etc/init.d/01ksm
+
+# zram init
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/configs/02zram:system/etc/init.d/02zram
+
 # Netflix hack
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/98netflix:system/etc/init.d/98netflix
