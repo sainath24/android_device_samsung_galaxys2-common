@@ -158,38 +158,23 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_SEPOLICY_UNION += \
     bluetooth.te \
-    radio.te \
-    file_contexts \
-    te_macros \
-    debuggerd.te \
     device.te \
-    dhcp.te \
     domain.te \
-    drmserver.te \
     file.te \
+    file_contexts \
     init.te \
-    kernel.te \
-    kickstart.te \
-    lcd_device.te \
     mediaserver.te \
-    netmgrd.te \
-    platform_app.te \
-    qmiproxy.te \
-    qmuxd.te \
+    netd.te \
+    nfc.te \
     rild.te \
-    secril.te \
-    servicemanager.te \
+    service_contexts \
+    surfaceflinger.te \
     sysinit.te \
-    system.te \
     system_app.te \
     system_server.te \
-    time_daemon.te \
     ueventd.te \
-    vibe_device.te \
     vold.te \
-    wpa.te \
-    wpa_supplicant.te \
-    zygote.te
+    wpa_supplicant.te
 
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys2-common/recovery/recovery_keys.c
