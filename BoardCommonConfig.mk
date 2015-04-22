@@ -30,7 +30,6 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 EXYNOS4210_ENHANCEMENTS := true
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
-MALLOC_IMPL := dlmalloc
 
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
