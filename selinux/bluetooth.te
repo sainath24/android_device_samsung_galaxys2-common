@@ -1,3 +1,5 @@
-allow bluetooth bluetooth_efs_file:file read;
-allow bluetooth sysfs:file write;
-allow bluetooth efs_device_file:dir search;
+allow bluetooth smd_device:chr_file { read write ioctl open };
+allow bluetooth sysfs:file { write };
+allow bluetooth unlabeled:dir search;
+allow bluetooth unlabeled:file { read open };
+
