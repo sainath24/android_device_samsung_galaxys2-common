@@ -165,6 +165,7 @@ BOARD_SEPOLICY_UNION += \
     dumpstate.te \
     file.te \
     file_contexts \
+	gpsd.te \
     init.te \
     mediaserver.te \
     netd.te \
@@ -173,7 +174,8 @@ BOARD_SEPOLICY_UNION += \
     system_app.te \
     system_server.te \
     ueventd.te \
-    vold.te
+    vold.te \
+	wpa_supplicant.te
 
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys2-common/recovery/recovery_keys.c
