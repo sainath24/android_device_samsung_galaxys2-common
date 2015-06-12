@@ -1,1 +1,6 @@
 allow mediaserver mfc_device:chr_file { open read write ioctl};
+allow mediaserver mfc_device:chr_file rw_file_perms;
+allow mediaserver video_device:chr_file rw_file_perms;
+allow mediaserver { firmware_camera }:file r_file_perms;
+allow mediaserver firmware_camera:dir r_dir_perms;
+allow mediaserver camera_data_file:file rw_file_perms;
