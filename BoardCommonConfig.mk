@@ -30,6 +30,7 @@ TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_CPU_VARIANT := cortex-a9
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
+EXYNOS4_ENHANCEMENTS := true
 EXYNOS4210_ENHANCEMENTS := true
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
@@ -52,11 +53,17 @@ TARGET_NO_SEPARATE_RECOVERY := true
 TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
 
+TARGET_NEEDS_NON_PIE_SUPPORT := true
+
 BOARD_NAND_PAGE_SIZE := 4096
 BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_BASE := 0x40000000
-BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0
+BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0 androidboot.selinux=permissive
+
+
+# Include an expanded selection of fonts
+EXTENDED_FONT_FOOTPRINT := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
@@ -64,7 +71,7 @@ EXTENDED_FONT_FOOTPRINT := true
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 536870912
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 805306368
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 2147483648
 BOARD_FLASH_BLOCK_SIZE := 4096
 
@@ -82,11 +89,18 @@ BOARD_EGL_NEEDS_FNW := true
 BOARD_EGL_SKIP_FIRST_DEQUEUE := true
 BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
 USE_OPENGL_RENDERER := true
-COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH -DWORKAROUND_BUG_10194508
+COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH -DWORKAROUND_BUG_10194508 -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL -DBOARD_CANT_REALLOCATE_OMX_BUFFERS
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
+BOARD_EGL_SKIP_FIRST_DEQUEUE := true
+BOARD_EGL_NEEDS_FNW := true
 
 # FIMG Acceleration
 BOARD_USES_FIMGAPI := true
 BOARD_USES_SKIA_FIMGAPI := true
+
+# Logging
+TARGET_USES_LOGD := false
 
 # Enable WEBGL in WebKit
 ENABLE_WEBGL := true
@@ -103,6 +117,7 @@ BOARD_USE_METADATABUFFERTYPE := true
 BOARD_USES_MFC_FPS := true
 BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_CSC_FIMC := false
+BOARD_CANT_REALLOCATE_OMX_BUFFERS := true
 
 # Audio
 BOARD_USE_TINYALSA_AUDIO := true
@@ -137,6 +152,7 @@ WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/etc/wifi/bcmdhd_sta.b
 WIFI_DRIVER_MODULE_AP_ARG        := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
 WIFI_BAND                        := 802_11_ABG
 BOARD_HAVE_SAMSUNG_WIFI          := true
+BOARD_NO_WIFI_HAL		 := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -162,14 +178,22 @@ BOARD_SEPOLICY_UNION += \
     dumpstate.te \
     file.te \
     file_contexts \
-    init.te \
     kernel.te \
+    gpsd.te \
+    init.te \
     mediaserver.te \
+    netd.te \
     rild.te \
+    servicemanager.te \
+    service_contexts \
+    surfaceflinger.te \
+    sysinit.te \
+    shell.te \
     system_app.te \
     system_server.te \
     ueventd.te \
-    vold.te
+    vold.te \
+    wpa_supplicant.te
 
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys2-common/recovery/recovery_keys.c
@@ -187,10 +211,13 @@ RECOVERY_FSTAB_VERSION := 2
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2-common/include
 
 # Charging mode
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := "battery"
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
+BOARD_CHARGER_RES := device/samsung/galaxys2-common/res/charger
+
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxys2-common/shbootimg.mk
 
 # Override healthd HAL

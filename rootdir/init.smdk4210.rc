@@ -47,10 +47,27 @@ on fs
 on charger
 
 # CPU Frequency Governor
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
 
 # EHCI runtime enable for LPA
-    write /sys/devices/platform/s5p-ehci/power/control auto
+	write /sys/devices/platform/s5p-ehci/power/control auto
+
+
+
+# Restorecon
+    restorecon /efs/nv_data.bin
+    restorecon /efs/nv_data.bin.md5
+    restorecon /efs/.nv_core.bak
+    restorecon /efs/.nv_core.bak.md5
+    restorecon /efs/.nv_data.bak
+    restorecon /efs/.nv_data.bak.md5
+    restorecon /efs/.nv_state
+    restorecon /efs/bluetooth/bt_addr
+    restorecon /efs/FactoryApp/factorymode
+    restorecon /efs/FactoryApp/hw_ver
+    restorecon /efs/FactoryApp/keystr
+    restorecon /efs/FactoryApp/serial_no
+    restorecon /efs/imei/mps_code.dat
 
 on post-fs-data
 # insmod kernel modules
@@ -80,6 +97,7 @@ on post-fs-data
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
+    chown wifi root /dev/rfkill
 
 #DRM directory creation
     mkdir /system/etc/security/.drm 0775
@@ -228,7 +246,7 @@ on post-fs-data
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth bluetooth ro.bt.bdaddr_path
     chown bluetooth bluetooth /dev/ttySAC0
-    chmod 0600 /dev/ttySAC0
+    chmod 0660 /dev/ttySAC0
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
@@ -441,3 +459,9 @@ service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1
 service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk0 /storage/usbdisk0
     class late_start
     disabled
+
+on property:init.svc.bootanim=stopped
+# Make the lmk values rw to get some adjustment apps working
+	chmod 0664 /sys/module/lowmemorykiller/parameters/adj
+	chmod 0664 /sys/module/lowmemorykiller/parameters/minfree
+
