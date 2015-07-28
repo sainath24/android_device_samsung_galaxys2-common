@@ -33,7 +33,3 @@
     <!-- configuration for showing smsc pref -->
     <bool name="config_show_smsc_pref">true</bool>
 </resources>
-<<<<<<< HEAD
-=======
-
->>>>>>> 56dddadd4b675ae8a4882ea0a1f94740d8a74aef
