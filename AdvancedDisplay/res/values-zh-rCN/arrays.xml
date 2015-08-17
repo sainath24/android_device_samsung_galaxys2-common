@@ -17,33 +17,24 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="mdnie_scenario_entries">
-    <item>سایانوژن‌مود (پیش‌فرض)</item>
-    <item>رابط کاربر</item>
-    <item>ویدیو</item>
-    <item>تصویری گرم</item>
-    <item>تصویری سرد</item>
-    <item>دوربین</item>
-    <item>پیمایش</item>
-    <item>گالری</item>
+    <item>CyanogenMod (默认)</item>
+    <item>UI</item>
+    <item>影像模式</item>
+    <item>影像模式 (温)</item>
+    <item>影像模式 (冷)</item>
+    <item>相机</item>
+    <item>导航</item>
+    <item>图库</item>
     <item>VT</item>
   </string-array>
   <string-array name="mdnie_mode_entries">
-    <item>پویا (پیش‌فرض)</item>
-    <item>استاندارد</item>
-    <item>طبیعی</item>
-    <item>فیلم</item>
+    <item>动态 (默认)</item>
+    <item>标准</item>
+    <item>自然</item>
+    <item>影片</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
-    <item>عادی</item>
-    <item>معکوس</item>
-  </string-array>
-    <item>UI</item>
-    <item>Video</item>
-    <item>Video warm</item>
-    <item>Video cold</item>
-    <item>Camera</item>
-    <item>Navigation</item>
-    <item>Gallery</item>
-    <item>VT</item>
+    <item>正常</item>
+    <item>反色</item>
   </string-array>
 </resources>
