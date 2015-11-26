@@ -29,6 +29,7 @@ TARGET_CPU_VARIANT := cortex-a9
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 EXYNOS4210_ENHANCEMENTS := true
+
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 
@@ -82,6 +83,7 @@ BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
 BOARD_EGL_NEEDS_FNW := true
 BOARD_EGL_SKIP_FIRST_DEQUEUE := true
 BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
+BOARD_EGL_NEEDS_HANDLE_VALUE := true
 USE_OPENGL_RENDERER := true
 COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH -DWORKAROUND_BUG_10194508
 
