@@ -60,6 +60,10 @@ PRODUCT_PACKAGES := \
     SamsungServiceMode \
     Torch
 
+# Samsung symbols
+PRODUCT_PACKAGES += \
+    libsamsung_symbols
+
 # Audio Packages
 PRODUCT_PACKAGES += \
     AdvancedDisplay \
