@@ -29,6 +29,7 @@ TARGET_CPU_VARIANT := cortex-a9
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 EXYNOS4210_ENHANCEMENTS := true
+
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 
@@ -65,7 +66,7 @@ MALLOC_IMPL := dlmalloc
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 536870912
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 893386752
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 2147483648
 BOARD_FLASH_BLOCK_SIZE := 4096
 
@@ -83,6 +84,7 @@ BOARD_EGL_NEEDS_FNW := true
 BOARD_EGL_NEEDS_HANDLE_VALUE=true
 BOARD_EGL_SKIP_FIRST_DEQUEUE := true
 BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
+BOARD_EGL_NEEDS_HANDLE_VALUE := true
 USE_OPENGL_RENDERER := true
 COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH -DWORKAROUND_BUG_10194508
 
@@ -139,6 +141,7 @@ WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/etc/wifi/bcmdhd_sta.b
 WIFI_DRIVER_MODULE_AP_ARG        := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
 WIFI_BAND                        := 802_11_ABG
 BOARD_HAVE_SAMSUNG_WIFI          := true
+BOARD_NO_WIFI_HAL		 := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
