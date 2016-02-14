@@ -142,6 +142,11 @@ PRODUCT_PACKAGES += \
     setup_fs \
     static_busybox
 
+# F2FS Filesystem
+PRODUCT_PACKAGES += \
+    fsck.f2fs \
+    mkfs.f2fs
+
 # Live Wallpapers
 PRODUCT_PACKAGES += \
     Galaxy4 \
