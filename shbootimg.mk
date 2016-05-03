@@ -30,6 +30,5 @@ TARGET_KERNEL_BINARIES: $(KERNEL_OUT) $(KERNEL_CONFIG) $(KERNEL_HEADERS_INSTALL)
 $(INSTALLED_BOOTIMAGE_TARGET): $(INSTALLED_KERNEL_TARGET)
 	$(ACP) -fp $< $@
 
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(INSTALLED_KERNEL_TARGET)
-#	$(call build-recoveryimage-target, $@)
-	$(ACP) -fp $< $@
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(recovery_uncompressed_ramdisk)
+	lzop -f9 -o $@ $<
